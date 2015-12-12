@@ -26,6 +26,6 @@ post '/lists/:id/items' do
 end
 
 get '/search' do
-  results = $DB[:items].where(Sequel.like(:name, '%dog%')).all
+  results = $DB[:items].where(Sequel.like(:name, "%#{params[:criteria]}%")).all
   json :results => results
 end
