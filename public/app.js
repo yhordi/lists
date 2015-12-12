@@ -23,8 +23,8 @@ var createLinks = function(){
   })
 }
 
-var clearContainer = function(){
-  $('#container').html('')
+var clear = function(element){
+  $(element).html('')
 }
 
 var createItem = function(id){
@@ -35,7 +35,7 @@ var createItem = function(id){
     url: url,
     data: data
   }).done(function(response){
-    clearContainer()
+    clear($('#container'))
     getItems(id)
   })
 }
@@ -57,6 +57,7 @@ var search = function(data){
     data: data,
     method: 'get'
   }).done(function(response){
+    clear('#results')
     showSearchResults(response)
   })
 }
@@ -70,7 +71,7 @@ var showSearchResults = function(data) {
 var bindLinkListenter = function(element, id) {
   $(element).on('click', function(e){
     e.preventDefault()
-    clearContainer() 
+    clear($('#container'))
     getItems(id)
   })
 }
